@@ -1,3 +1,4 @@
-.idea
-/download/*/.txt
-/uploads/*/.txt
+.idea/
+download/*.zip
+uploads/processing/*.txt
+uploads/tmp/*.txt
