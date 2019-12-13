@@ -1,0 +1,470 @@
+{
+	"Permutations": {
+		"application": {
+			"title": { "fr":"Outil de permutations", "en":"Permutations Tool" },
+			"help": { 
+				"fr":[
+					"<p>Cet outil génère des permutations à partir d'une liste d'éléments séparés par une virgule suivie d'un espace. Les éléments peuvent éventuellement être écrits en Spintax.</p>",
+					"<p>Dans le cas où le dernier élément de la liste commencerait par une conjonction et/ou, veillez à activer la case à cocher relative.</p>",
+					"<p>Concernant la liste des éléments permutés, 3 modes des gestion des majuscules sont proposées :</p>",
+					"<ol>",
+						"<li><b>néant : ne rien modifier</b> : la casse de tous les éléments permutés reste inchangée</li>",
+						"<li><b>1ère lettre du 1er élément</b> : la première lettre de chaque élément permuté est mise en majusules ; la casse des autres éléments reste inchangée</li>",
+						"<li><b>1ère lettre de chaque élément</b> : la première lettre de tous les éléments permutés est mise en majusules</li>",
+					"</ol>",
+					"<p class='title'>À noter</p>",
+					"Cette gestion prend en compte les élément en Spintax. Ainsi, dire que la première lettre d'un élément en Spintax commence par une majuscule revient à dire que la première lettre de chaque variation de cet élément commence par une majuscule.</p>"
+				], 
+				"en":[
+				"<p>This tool generates permutations derived from a Original list separated by a comma and followed by a space. The elements may be written in Spintax.</p>",
+				"<p>Should the last element of the list begin with an and/or conjunction, be sure to check the relevant box.</p>",
+				"<p>Regarding the list of permutated elements, 3 management modes are proposed for uppercase letters:</p>",
+				"<ol>",
+						"<li><b>Nil: Change nothing</b> : The cases of all the permutated elements remains unchanged</li>",
+						"<li><b>1st letter of the 1st element</b> : The first letter of each permutated element is capitalized; the cases of the other elements remain unchanged</li>",
+						"<li><b>1st letter of each element</b> : The first letter of all the permutated elements is capitalized</li>",
+					"</ol>",
+					"<p class='title'>Note</p>",
+					"<p>This management process takes account of elements in Spintax. Thus, saying that the first letter of an element in Spintax begins with an uppercase letter is equivalent to saying that the first letter of each variation of this element begins with an uppercase letter.</p>"
+					]
+			}
+		},
+		"form": {
+			"label": {
+				"conjunction_before_last_elt": { "fr":"Conjonction « et/ou » avant le dernier élément", "en":"Conjunction \" and / or \" before last element" },
+				"randomly_hide_elements": { "fr":"Disparition aléatoire des éléments", "en":"Hide elements randomly" },
+				"elements_case_policy": { "fr":"Mettre en majuscule", "en":"Uppercase" },
+				"items_list": { "fr":"Liste des éléments", "en":"Original list" },
+				"item_permutations": { "fr":"Liste des éléments permutés", "en":"List of permuted elements" }
+			},
+			"select": {
+				"elements_case_policy": {
+					"do_nothing": { "fr":"ne rien modifier", "en":"change nothing" },
+					"first_letter_of_first_element_uppercase": { "fr":"1ère lettre du 1er élément", "en":"first letter of first element" },
+					"first_letter_of_all_elements_uppercase": { "fr":"1ère lettre de chaque élément", "en":"first letter of each element" }
+				}
+			},
+			"button": {
+				"restart": { "fr":"recommencer", "en":"reset" },
+				"permute": { "fr":"permuter", "en":"permute" },
+				"copy_to_clipboard": { "fr":"Copier dans le presse-papiers", "en":"Copy to clipboard" }
+			}
+		},
+		"message": {
+			"success": {
+				"text_copied_to_clipboard": { "fr":"Votre texte a été copié dans le presse-papiers.", "en":"Text copied to clipboard." },
+				"permutation_generated": { "fr":"La permutation a été générée.", "en":"Permutation has been generated." }
+			},
+			"warning": {
+				"please_enter_elements_list": { "fr":"Veuillez saisir une liste d'éléments.", "en":"Please enter a Original list." },
+				"no_conjunction_found": { "fr":"Aucune conjonction trouvée dans la liste d'éléments.<br>Décochez la case \"Conjonction « et/ou » avant le dernier élément\" ou modifiez votre saisie.", "en":"No conjunction found in the Original list.<br>Uncheck the \"Conjunction « and / or » before last element\" checkbox or change your entry." },
+				"conjunction_found": { "fr":"Conjonction trouvée dans la liste d'éléments. <br>Cochez la case \"Conjonction « et/ou » avant le dernier élément\" ou modifiez votre saisie.", "en":"Conjunction found in the Original list.<br>Check the \"Conjunction « and / or » before last element\" checkbox or change your entry." },
+				"min_number_of_elements": { "fr":"Nombre minimum d'éléments autorisé : ", "en":"Minimum number of elements allowed : " },
+				"max_number_of_elements": { "fr":"Nombre maximum d'éléments autorisé : ", "en":"Maximum number of elements allowed : " }
+			}
+		},
+		"variable": {
+			"regexp_conjunction": { "fr":"( et | ou )", "en":"( and | or )" }
+		}
+	},
+	
+	"SpincheckerNN": {
+		"application": {
+			"title": { "fr":"SpinChecker-NN", "en":"SpinChecker-NN Tool" },
+			"help": {
+				"fr":[
+					"<p>Cet outil permet d'analyser un spin saisi manuellement ou téléchargé. Vous pouvez télécharger des fichiers en cochant la case du même nom, puis en choisissant un ou plusieurs fichiers .txt dans le répertoire de votre choix.",
+					"<p class='title'>L'outil vérifie les règles suivantes</p>",
+					"<ul>",
+						"<li>Chaque paragraphe contient au moins <span id='help-min-customer-sentences'></span> de type « client »</li>",
+						"<li>Chaque paragraphe contient au moins 1 phrase de type « neutre »</li>",
+						"<li>Chaque phrase de type client crée 50% (&plusmn; <span id='rate-margin'></span>%) d'articles avec le nom du client</li>",
+						"<li>Chaque phrase comporte au maximum <span id='help-max-sentence-chars'></span> caractères lorsque la case \"Vérifier la longueur des phrases \" est cochée</li>",
+					"</ul>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-lightbulb-o'></i>A propos de la recherche des mots-clés client</p>",
+					"<ul>",
+						"<li>Lorsque l'option \"Recherche sensible à la casse\" n'est pas cochée, le mot-clé <b>SFAM</b> correspond également à <b>Sfam</b> ou encore <b>sfam</b></li>",
+						"<li>Quand la case <b>Ignorer les mot-clés entre guillemets</b> est cochée, si le mot-clé est <b>SFAM</b>, <b>«SFAM»</b> ou <b>« SFAM »</b> ne seront pas comptabilisés</li>",
+					"</ul>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-lightbulb-o'></i>À noter",
+					"<ul>",
+						"<li>En cas de téléchargement de fichiers, ceux-ci sont ajoutés par ordre alphabétique de nom de fichier.</li>",
+					"</ul>",
+					"</p>"
+				],
+				"en":[
+				"<p>This tool makes it possible to analyse a manually entered or downloaded Spintax. You can download files by checking the box of the same name and then choosing one or more TXT files in the directory of your choice.",
+					"<p class='title'>The tool checks the following rules</p>",
+					"<ul>",
+						"<li>The Spintax contains at least <span id='help-min-customer-sentences'></span> of the  \"customer\" type</li>",
+						"<li>The Spintax contains at least 1 sentence of the \"neutral\" type</li>",
+						"<li>Each sentence of the customer type creates 50%(&plusmn; <span id='rate-margin'></span>%) of articles with the name of the customer</li>",
+						"<li>Each sentence has at most <span id='help-max-sentence-chars'></span> characters when the check box labeled \"Check the length of the sentences\" is ticked</li>",
+					"</ul>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-lightbulb-o'></i>Regarding the customer keyword search</p>",
+					"<ul>",
+						"<li>When the box labeled \"Search is case sensitive\" is not ticked, the keyword SFAM corresponds for example to Sfam or sfam</li>",
+						"<li>When the box labeled \"Ignore keywords in quotes\" is ticked, the keyword SFAM does not correspond for example to \"SFAM\" or \" SFAM \".</li>",
+					"</ul>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-lightbulb-o'></i>Note",
+					"<ul>",
+						"<li>If files are downloaded, they are added in alphabetical order according to file name.</li>",
+					"</ul>",
+					"</p>"
+					]
+			}
+		},
+		"form": {
+			"label": {
+				"customer_keyword": { "fr":"Mot-clé client", "en":"Customer keyword" },
+				"min_customer_sentences": { "fr":"Phrases client minimum", "en":"Minimal customer sentences" },
+				"ignore_words_between_quotes": { "fr":"Ignorer les mot-clés entre « »", "en":"Ignore keywords between \" \"" },
+				"ignore_first_sentence": { "fr":"Ignorer la première phrase", "en":"Ignore first sentence" },
+				"search_case_sensitive": { "fr":"Recherche sensible à la casse", "en":"Search is case sensitive" },
+				"check_sentence_length": { "fr":"Vérifier la longueur des phrases", "en":"Check sentences length" },
+				"master_spin_paragraph": { "fr":"Spintax", "en":"Spintax" }
+			},
+			"select": {
+				"at_least_1_customer_sentence": { "fr":"au moins 1", "en":"at least 1"},
+				"at_least_2_customer_sentences": { "fr":"au moins 2", "en":"at least 2"},
+				"at_least_3_customer_sentences": { "fr":"au moins 3", "en":"at least 3"},
+				"at_least_4_customer_sentences": { "fr":"au moins 4", "en":"at least 4"},
+				"at_least_5_customer_sentences": { "fr":"au moins 5", "en":"at least 5"},
+				"at_least_6_customer_sentences": { "fr":"au moins 6", "en":"at least 6"}
+			},
+			"button": {
+				"upload_files": { "fr":"télécharger des fichiers", "en":"upload files" },
+				"restart": { "fr":"recommencer", "en":"reset" },
+				"test_spin": { "fr":"tester le master Spin", "en":"test master spin" }
+			}
+		},
+		"message": {
+			"success": {
+				"first_sentence_ignored": { "fr":"Phrase 1 ignorée", "en":"Sentence 1 ignored" }
+			},
+			"warning": {
+				"please_enter_keyword": { "fr":"Veuillez saisir un mot-clé.", "en":"Please enter a keyword." },
+				"please_enter_master_spin": { "fr":"Veuillez saisir un Master Spin.", "en":"Please enter a Master Spin." }
+			},
+			"file": { "fr":"Fichier", "en":"File" },
+			"paragraph_number": { "fr":"Paragraphe n°", "en":"Paragraph n°" },
+			"this_paragraph_contains": { "fr":"Ce paragraphe comporte", "en":"This paragraph contains" },
+			"customer_sentences_for_a_minimum_of": { "fr":"phrase(s) client pour un minimum de", "en":"customer sentence(s), where the minimum must be" },
+			"neutral_sentences_for_a_minimum_of": { "fr":"pour un minimum de", "en":"neutral sentence(s), where the minimum must be " },
+			"neutral_et": { "fr":"Le nombre de phrases neutres est de", "en":"and" },
+			"sentences_for_a_require_count_of": { "fr":"phrase(s) pour un nombre requis de", "en":"sentence(s) for a required count of" },
+			"sentence_number": { "fr":"La phrase n°", "en":"Sentence n°" },
+			"paragraph_sep": { "fr":".", "en":"," },
+			"is_customer_sentence": { "fr":"est une phrase client", "en":"is a customer sentence" },
+			"is_neutral_sentence": { "fr":"est une phrase neutre", "en":"is a neutral sentence" },
+			"semicolon_space": { "fr":" ; ", "en":"; " },
+			"it_generates": { "fr":"elle génère", "en":"it generates" },
+			"spuns_containing_keyword": { "fr":"d'articles avec le mot-clé", "en":"articles containing the keyword" },
+			"it_has_more_than": { "fr":"elle comporte plus de", "en":"it has more than" },
+			"characters": { "fr":"caractères", "en":"characters" }
+		}
+	},
+	
+	"Spinchecker": {
+		"application": {
+			"title": { "fr":"Générateur d'articles", "en":"Articles Generator" },
+			"help": {
+				"fr":[
+					"<p>Cet outil permet d'analyser la syntaxe d'un article au format Spintax et d'en calculer des statistiques.</p>",
+					"<p class='title'<i style='margin-right:10px' class='fa fa-book'></i>Conventions de nommage",
+						"<ol>",
+							"<li>un <u><i>article</i></u> contient un ou plusieurs <u><i>paragraphes</i></u>, séparés par deux retours chariot</li>",
+							"<li>un <u><i>paragraphe</i></u> contient plusieurs <u><i>éléments</i></u>, séparées par un seul retour chariot</li>",
+							"<li>un <u><i>élément</i></u> contient une ou plusieurs phrases écrites au format Spintax</li>",
+						"</ol>",
+					"</p>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-wrench'></i>Utilisation",
+						"<ol>",
+							"<li>Saisissez un article au format Spintax.</li>",
+							"<li>Cliquez sur le bouton vert « analyse de l'article ».</li>",
+							"<li>",
+								"L'article disparaît, remplacé par ses paragraphes. Pour chaque paragraphe, les erreurs (en rouge) ou avertissements (en orange) éventuels sont signalés. Cliquer dessus positionne le curseur à l'endroit du paragraphe concerné.",
+								"<br>Si seuls des avertissements sont détectés, un lien « Statistiques du paragraphe » permet de faire apparaître les statistiques suivantes ; si aucune erreur ni avertissement ne sot détectés, celles-ci apparaissent directement :",
+							"</li>",
+							"<ul>",
+								"<li>nombre d'éléments</li>",
+								"<li>nombre de résultats générés</li>",
+								"<li>taux de variation (idéalement &#8805; <span id='reference-variation-rate'></span>%) : représente la quantité de variations introduites par des <b>|</b>, augmentant les possibilités de tirage du spin</li>",
+								"<li>taux de perforation (idéalement &#8805; <span id='reference-perforation-rate'></span>%) : représente le nombre de blocs d'accolades</li>",
+								"<li>indice de variation (idéalement &#8805; 1) : rapport entre le taux de variation et un taux de variation de référence</li>",
+								"<li>indice de perforation (idéalement &#8805; 1) : rapport entre le taux de perforation et un taux de perforation de référence</li>",
+								"<li>indice qualité (idéalement &#8805; 1) : représente une proportion jugée idéale entre les taux de variation et de perforation</li>",
+							"</ul>",
+							"À noter : même si les avertissements n'empêchent pas de générer les statistiques de l'article, ils doivent être corrigés au même titre que les erreurs.",
+							"<li>",
+								"À ce stade, pour chaque paragraphe vous pouvez éditer son contenu et modifier le mode de permutation de ses éléments. ",
+								"Dans les 2 cas, pensez à cliquer sur le bouton vert « Actualiser ».",
+							"</li>",
+							"<li>Cliquez sur le bouton vert « Statistiques de l'article ». Les statistiques suivantes apparaissent :</li>",
+							"<ul>",
+								"<li>nombre de paragraphes</li>",
+								"<li>nombre de résultats générés</li>",
+								"<li>nombre de mots minimum / maximum/ moyen</li>",
+								"<li>taux de variation / de perforation (voir plus haut)</li>",
+								"<li>indice de variation / de perforation / qualité (voir plus haut)</li>",
+							"</ul>",
+							"<li>À tout moment, vous êtes libre de cliquer sur le bouton rouge « Recommencer » et saisir ainsi un nouvel article au format Spintax.</li>",
+						"</ol>",
+					"</p>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-lightbulb-o'></i>À noter",
+						"<ul>",
+							"<li>Les avertissements concernant <span id='max-consecutive-words-without-variations'></span> mots consécutifs sans variation ne tiennent pas compte d'une <a href='#' onclick='$(\"#stop-words-list\").slideToggle(700)'>liste de stop-words</a>.</li>",
+							"<div id='stop-words-list'></div>",
+							"<li>En cas de téléchargement de fichiers, ceux-ci sont ajoutés par ordre alphabétique de nom de fichier.</li>",
+							"<li>L'affichage du bloc d'accolades courant est en version <i>Beta</i> et n'est pas garanti pour des textes comportant du code HTML.</li>",
+						"</ul>",
+					"</p>"
+				],
+				"en":[
+				"<p>This tool makes it possible to analyse the syntax of an article in Spintax format and to calculate some of its statistics.</p>",
+				  "<p class='title'<i style='margin-right:10px' class='fa fa-book'></i>Naming conventions",
+						"<ol>",
+							"<li>an <u><i>article</i></u> contains one or more <u><i>paragraphs</i></u>, separated by two carriage returns</li>",
+							"<li>a <u><i>paragraph</i></u> contains several <u><i>elements</i></u>, separated by a single carriage return</li>",
+							"<li>an <u><i>element</i></u> contains one or more sentences written in Spintax format</li>",
+						"</ol>",
+					"</p>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-wrench'></i>How to use",
+						"<ol>",
+							"<li>Enter an article in Spintax format.</li>",
+							"<li>Click on the green button labeled &quot;Article analysis&quot;.</li>",
+							"<li>",
+								"The article disappears and is replaced by its paragraphs. For each paragraph, any errors (in red) or warnings (in orange) are shown. Clicking on a paragraph positions the cursor there.",
+								"<br>If only warnings are detected, a &quot;Paragraph statistics&quot; link allows you to display the following statistics; if no errors or warnings are detected, the statistics appear immediately:",
+							"</li>",
+							"<ul>",
+								"<li>number of elements</li>",
+								"<li>number of generated results</li>",
+								"<li>variation rate (ideally <span id='reference-variation-rate'></span>%) : uses the symbol <b>|</b>, to represent the quantity of included variations, increasing the possible spin yield</li>",
+								"<li>perforation rate (ideally <span id='reference-perforation-rate'></span>%) : represents the number of bracketed units</li>",
+								"<li>variation index (ideally &#8805; 1) : relationship between the variation rate and a reference variation rate</li>",
+								"<li>variation index (ideally &#8805; 1) : ratio between the variation rate and a base variation rate</li>",
+								"<li>quality Index (ideally &#8805; 1) : represents a proportion considered ideal between the variation and perforation rates</li>",
+							"</ul>",
+							"Note: Even if the warnings do not prevent generating the statistics of the article, they must be corrected in the same way as the errors.",
+							"<li>",
+								"At this stage, for each paragraph you can edit its content and change the permutation mode of its elements. ",
+								"In both cases, remember to click on the green &quot;Update&quot; button.",
+							"</li>",
+							"<li>Click on the green button labeled &quot;Article statistics&quot;. The following statistics will appear:</li>",
+							"<ul>",
+								"<li>number of paragraphs</li>",
+								"<li>number of generated results</li>",
+								"<li>minimum / maximum / average number of words</li>",
+								"<li>variation / perforation rate (see above)</li>",
+								"<li>variation / perforation index (see above)</li>",
+							"</ul>",
+							"<li>You are free at any time to click on the red &quot;Restart&quot; button so as to enter a new article in Spintax format.</li>",
+						"</ol>",
+					"</p>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-lightbulb-o'></i>Note",
+					"<ul>",
+							"<li>Warnings about consecutive <span id='max-consecutive-words-without-variations'></span> words lacking variation do not take account of <a href='#' onclick='$(\"#stop-words-list\").slideToggle(700)'>a list of stop words</a>.</li>",
+							"<div id='stop-words-list'></div>",
+							"<li>If files are downloaded, they are added in alphabetical order according to file name.</li>",
+							"<li>The display of the current bracketed units is a Beta version and is not guaranteed for text containing HTML.</li>",
+						"</ul>",
+					"</p>"
+					]
+			}
+		},
+		"form": {
+			"label": {
+				"default_permutation_mode": { "fr":"Mode de permutation par défaut", "en":"Default permutation mode" },
+				"compare_paragraphs": { "fr":"Comparer les paragraphes", "en":"Compare paragraphs" },
+				"show_current_brackets_block": { "fr":"Afficher le bloc d'accolades courant (bêta)", "en":"Show current brackets block " },
+				"spintax_article": { "fr":"Article au format Spintax", "en":"Spintax article" },
+				"para_detected": { "fr":"Nombre de paragraphes détectés", "en":"Total no. of paragraph detected" },
+				"how_many_article": { "fr":"Combien d'articles voulez-vous ?", "en":"How many articles you wants to generate?" },
+				"intro_htag": { "fr":"Forcer le titre en h1 s'il se trouve en toute 1ère ligne ?", "en":"Do you want to make introduction title with h1 tag?" },
+				"add_ptag": { "fr":"Voulez-vous ajouter la balise p aux paragraphes ?", "en":"Do you want to add p tag to paragraphs ?" },
+				"rand_swap": { "fr":"Voulez-vous permuter les paragraphes (sauf les paragraphes intro et conclusion) ?", "en":"Do you want to randomly swap the paragraphs?" }
+			},
+			"select": {
+				"permutation_mode_none": { "fr":"Aucun élément permutable", "en":"No permutable element" },
+				"permutation_mode_all": { "fr":"Éléments tous permutables", "en":"All elements are permutable" },
+				"permutation_mode_all_except_first": { "fr":"Éléments tous permutables sauf le premier", "en":"All elements are permutable except first" },
+				"permutation_mode_all_except_last": { "fr":"Eléments tous permutables sauf le dernier", "en":"All elements are permutable except last" },
+				"permutation_mode_all_except_first_last": { "fr":"Tous les éléments sont permutables sauf premier et dernier", "en":"All elements are permutable except first and last" },
+				"normal_paragraph": { "fr":"Paragraphe normal", "en":"Normal Paragraph" },
+				"introduction_paragraph": { "fr":"Paragraphe d'introduction", "en":"Introduction Paragraph" },
+				"conclusion_paragraph": { "fr":"Conclusion", "en":"Conclusion Paragraph" },
+				"upon": { "fr":"et", "en":"and" },
+				"permanenthtag": { "fr":"h2 permanent", "en":"Permanent h2" },
+				"randmhtag": { "fr":"disparition aléatoire du h2", "en":"Randomly vanishing h2" },
+				"detected_element": { "fr":" éléments ont été détectés dans ce paragraphe", "en":" elements have been detected in this paragraph" },
+				"min_ele_keep": { "fr":"Nombre minimum d'éléments à conserver ", "en":"Minimum number of elements to keep " },
+				"min_para_keep": { "fr":"Nombre de paragraphes à conserver : entre ", "en":"Number of paragraphs to keep : between " }
+			},
+			"button": {
+				"upload_files": { "fr":"télécharger des fichiers", "en":"upload files" },
+				"restart": { "fr":"recommencer", "en":"reset" },
+				"article_analysis": { "fr":"charger", "en":"article analysis" },
+				"create_article": { "fr":"générer les articles", "en":"generate articles" },
+				"article_stats": { "fr":"statistiques de l'article", "en":"article stats" },
+				"download_text": { "fr":"télécharger vos articles", "en":"download" },
+				"download_description": { "fr":"Vos articles sont prêts à télécharger. Veuillez cliquer sur le bouton ci-dessous pour le télécharger.", "en":"Your Articles are ready to download. Please click below button to download it." },
+				"refresh": { "fr":"actualiser", "en":"refresh" }
+			}
+		},
+		"message": {
+			"success": {
+				
+			},
+			"warning": {
+				"unable_to_process_spintax_errors_remain": { "fr":"Traitement impossible tant que des erreurs Spintax subsistent.", "en":"Unable to process: Spintax errors remain." },
+				"stack_overflow": { "fr":"À cause d'un dépassement de capacité interne, les statistiques de l'article comportent des approximations mineures.", "en":"Due to overloaded internal capacity, the article statistics contain minor errors." },
+				"please_enter_article": { "fr":"Veuillez saisir un article au format Spintax.", "en":"Please enter a Spintax article." },
+                "loading_text": { "fr":"FR Please be patient and do not navigate away from this page while generate articles is in progress. This can take a while if your server is slow (inexpensive hosting).</br>You will be notified via this page when the process of generating articles is completed.", "en":"Please be patient and do not navigate away from this page while generate articles is in progress. This can take a while if your server is slow (inexpensive hosting).</br>You will be notified via this page when the process of generating articles is completed." }
+			},
+			"error": {
+				"unnecessary_opening_bracket_or_missing_pipe": { "fr":"Accolade ouvrante superflue ou pipeline manquant", "en":"Unnecessary opening bracket or missing pipeline" }, 
+				"unnecessary_closing_bracket_or_missing_pipe": { "fr":"Accolade fermante superflue ou pipeline manquant", "en":"Unnecessary closing bracket or missing pipeline" },
+				"consecutive_words_without_variations_part_1": { "fr":"Au moins", "en":"At least" },
+				"consecutive_words_without_variations_part_2": { "fr":"mots consécutifs sans variations", "en":"consecutive words found without replacement" },
+				"spintax_is_empty": { "fr":"Le paragraphe est vide", "en":"Paragraph is empty" },
+				"end_punctuation_sign": { "fr":"Cet élément ne se termine par aucun signe de ponctuation, est-ce normal ?", "en":"This element doesn't end with a punctuation sign, is it right?" },
+				"start_lower_case": { "fr":"Cet élément démarre par une lettre en minuscule, est-ce normal ?", "en":"This element is starting with a lower case letter, is it right?" },
+				"start_blank": { "fr":"Cet élément démarre par une espace, est-ce normal ?", "en":"This element is starting with a blank character, is it right?" },
+				"unnecessary_opening_bracket": { "fr":"Accolade ouvrante superflue", "en":"Unnecessary opening bracket" },
+				"line_number": { "fr":"Ligne N°", "en":"Line N°" },
+				"unnecessary_closing_bracket": { "fr":"Accolade fermante superflue", "en":"Unnecessary closing bracket" },
+				"missing_matching_opening_bracket_for_bracket": { "fr":"Aucune accolade ouvrante ne correspond à cette accolade fermante", "en":"No opening bracket matches this closing bracket" },
+				"missing_matching_closing_bracket_for_bracket": { "fr":"Aucune accolade fermante ne correspond à cette accolade ouvrante", "en":"No closing bracket matches this opening bracket" },
+				"missing_matching_opening_bracket_for_pipe": { "fr":"Aucune accolade ouvrante ne correspond à ce pipeline", "en":"No opening bracket matches this pipeline" },
+				"missing_matching_closing_bracket_for_pipe": { "fr":"Aucune accolade fermante ne correspond à ce pipeline", "en":"No closing bracket matches this pipeline" }
+			},
+			"spintax_paragraph": { "fr":"Paragraphe Spintax", "en":"Spintax paragraph" },
+			"this_paragraph_contains_no_error_no_warning": { "fr":"Ce paragraphe ne contient ni erreur ni avertissement", "en":"This paragraph contains no error nor warning" },
+			"this_paragraph_contains": { "fr":"Ce paragraphe contient", "en":"This paragraph contains" },
+			"word_error": { "fr":"erreur", "en":"error" },
+			"and": { "fr":"et", "en":"and" },
+			"word_warning": { "fr":"avertissement", "en":"warning" },
+			"paragraph_number": { "fr":"Le paragraphe n°", "en":"Paragraph n°" },
+			"contains": { "fr":"comporte", "en":"contains" },
+			"element": { "fr":"élément", "en":"element" },
+			"having_permutation_mode": { "fr":", dont le mode de permutation est", "en":"and its permutation mode is" },
+			"having_quote_arrow_pre": { "fr":"«&nbsp", "en":"&nbsp;\"" },
+			"having_quote_arrow_nex": { "fr":"&nbsp;»", "en":"\"" },
+			"having_seprator_avg": { "fr":",", "en":"." },
+			"this_article_has": { "fr":"L'article comporte", "en":"This article has" },
+			"results_total_is": { "fr":"Le nombre de résultats générés est ", "en":"Total results count is" },
+			"close_to_infinity": { "fr":"proche de l'infini", "en":"close to infinity" },
+			"paragraph_has_replacement_rate": { "fr":"Le paragraphe offre un taux de variation", "en":"Paragraph has a replacement rate" },
+			"of": { "fr":"de", "en":"of" },
+			"and_hole_rate": { "fr":"et un taux de perforation", "en":"and a perforation rate" },
+			"word_count_between": { "fr":"Le nombre de mots se situe entre", "en":"Word count is between" },
+			"with_average": { "fr":"avec une moyenne", "en":"with an average" },
+			"word": { "fr":"mot", "en":"word" },
+			"article_has_replacement_rate": { "fr":"L'article offre un taux de variation", "en":"This article has a replacement rate" },
+			"public_site_advertisement": { "fr":"Les indices que vous voyez ci-dessus sont basés sur les caractéristiques moyennes de nos spins. Si le résultat est >1 cela signifie que le spin analysé est au-dessus de la moyenne de nos spins sur l'indice en question. Nous nous attachons à produire des spins de très haute qualité qui permettent de générer des milliers d'articles parfaitement lisibles, ayant un taux de similitude inférieur à 20% et ne contenant quasiment aucune faute de français (moins de 0,5% sur le total de mots). Vous êtes intéressé ?", "en":"The indices you see above are based on the average characteristics of our spins. If the result is >1, it means that the analysed spin exceeds the average of our spins for the index in question. We strive to produce very high-quality spins to enable generating thousands of perfectly legible articles, with a rate of similarity below 20% and virtually no language errors (less than 0.5% of the total word count). Are you interested ?" },
+			"click_here": { "fr":"Cliquez ICI", "en":"Click HERE" },
+			"replacement_index": { "fr":"Indice de variation", "en":"Replacement Index" },
+			"hole_index": { "fr":"Indice de perforation", "en":"Perforation Index" },
+			"quality_index": { "fr":"Indice qualité", "en":"Quality Index" },
+			"paragraph": { "fr":"Paragraphe", "en":"Paragraph" },
+			"paragraph_lowercase": { "fr":"paragraphe", "en":"paragraph" },
+			"replacement_rate": { "fr":"Taux de variation", "en":"Replacement rate" },
+			"hole_rate": { "fr":"Taux de perforation", "en":"Perforation rate" },
+			"error_uppercase": { "fr":"Erreur", "en":"Error" },
+			"warning_uppercase": { "fr":"Avertissement", "en":"Warning" }
+		},
+		"variable": {
+			"stop_words": { 
+				"fr":["à","a","a-t-elle","a-t-il","a-t-on","au","aux","c","car","ce","cela","celle","celui","cent","cents","ces","cette","ceux","ci","d","de","des","du","elle","elles","en","et","est-ce","est-il","eux","il","ils","l","la","là","le","les","leur","lui","ma","mes","mille","mon","n","ne","ni","notre","nous","on","ont-elles","ont-ils","ou","où","par","pas","qu","que","quel","quelle","quelles","quels","qui","qu","s","sa","se","ses","si","sien","son","sur","ta","tes","tels","ton","tous","tout","très","tu","un","une","votre","vous","y"],
+				"en":["a","about","above","after","again","against","all","am","an","and","any","are","aren't","aren’t","as","at","be","because","been","before","being","below","between","both","but","by","can't","can’t","cannot","could","couldn't","couldn’t","did","didn't","didn’t","do","does","doesn't","doesn’t","doing","don't","don’t","down","during","each","few","for","from","further","had","hadn't","hadn’t","has","hasn't","hasn’t","have","haven't","haven’t","having","he","he'd","he’d","he'll","he’ll","he's","he’s","her","here","here's","here’s","hers","herself","him","himself","his","how","how's","how’s","i","I'd","I’d","I'll","I’ll","I'm","MZI’m","I've","I’ve","if","in","into","is","isn't","isn’t","it","it's","it’s","its","itself","let's","let’s","me","more","most","mustn't","mustn’t","my","myself","no","nor","not","of","off","on","once","only","or","other","ought","our","ours","ourselves","out","over","own","same","shan't","shan’t","she","she'd","she’d","she'll","she’ll","she's","she’s","should","shouldn't","shouldn’t","so","some","such","than","that","that's","that’s","the","their","theirs","them","themselves","then","there","there's","there’s","these","they","they'd","they’d","they'll","they’ll","they're","they’re","they've","they’ve","this","those","through","to","too","under","until","up","very","was","wasn't","wasn’t","we","we'd","we’d","we'll","we’ll","we're","we’re","we've","we’ve","were","weren't","weren’t","what","what's","what’s","when","when's","when’s","where","where's","where’s","which","while","who","who's","who’s","whom","why","why's","why’s","with","won't","won’t","would","wouldn't","wouldn’t","you","you'd","you’d","you'll","you’ll","you're","you’re","you've","you’ve","your","yours","yourself","yourselves"]
+			}
+		}
+	},
+	
+	"Flatspin": {
+		"application": {
+			"title": { "fr":"FlatSpin", "en":"FlatSpin Tool" },
+			"help": {
+				"fr":[
+					"<p>Cet outil génrère un flatspin à partir d'un paragraphe téléchargé. On entend par paragraphe, une suite de phrases spinnées séparées par un retour chariot. Cet outil permet de télécharger un seul paragraphe (fichier) à la fois.</p>",
+					"<p>La génération du flatspin suit les règles suivantes&nbsp;:</p>",
+					"<ul>",
+						"<li>chaque phrase du paragraphe génère <span id='max-random-variations'></span> variations aléatoires</li>",
+						"<li>chaque changement de phrase est matérialisé par un double retour chariot (ligne vide)</li>",
+						"<li>dans le cas où une phrase générerait potentiellement plus de <span id='max-random-variations'></span> variations distinctes, un message d'avertissement est affiché</li>",
+					"</ul>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-lightbulb-o'></i>À noter",
+					"<p>Chaque génération produisant des variations aléatoires, vous pouvez recommencer l'opération autant de fois que nécessaire à partir du même paragraphe téléchargé.</p>"
+				],
+				"en":[
+				"<p>This tool generates a flatspin from an uploaded paragraph. A paragraph is a series of spun sentences separated by carriage returns. The tool allows you to upload one single paragraph (file) at a time.</p>",
+					"<p>A flatspin is generated in accordance with the following rules:</p>",
+					"<ul>",
+						"<li>Each sentence in the paragraph generates <span id='max-random-variations'></span> random variations.</li>",
+						"<li>Every sentence change is marked-up by a double carriage return (empty line).</li>",
+						"<li>If more than <span id='max-random-variations'></span> separate variations can be injected from a sentence, a warning message is displayed.</li>",
+					"</ul>",
+					"<p class='title'><i style='margin-right:10px' class='fa fa-lightbulb-o'></i>Note",
+					"<p>Each generation produces random variations. You can restart the operation as many times as necessary, using the same uploaded paragraph.</p>"
+					]
+			}
+		},
+		"form": {
+			"label": {
+				"paragraph_spintax": { "fr":"Paragraphe au format Spintax", "en":"Spintax paragraph" },
+				"spell_checker": { "fr":"Correcteur orthographique", "en":"Spell checker" },
+				"paragraph_variations": { "fr":"Variations du paragraphe", "en":"Paragraph variations" }
+			},
+			"button": {
+				"upload_paragraph": { "fr":"télécharger un paragraphe", "en":"upload paragraph" },
+				"restart": { "fr":"recommencer", "en":"reset" },
+				"generate_flatspin": { "fr":"générer un nouveau flatspin", "en":"generate new flatspin" },
+				"download_paragraph": { "fr":"exporter le paragraphe", "en":"download paragraph" },
+				"copy_to_clipboard": { "fr":"copier dans le presse-papiers", "en":"copy to clipboard" },
+				"download_flatspin": { "fr":"télécharger le flatspin", "en":"download flatspin" },
+				"separate_paragraph_flatspin": { "fr":"Paragraphe flatspin séparé", "en":"Separate flatspin paragraph" }
+			}
+		},
+		"message": {
+			"success": {
+				"flatspin_copied_to_clipboard": { "fr":"Le flatspin a bien été copié dans le presse-papiers.", "en":"Flatspin has been copied to clipboard." }
+			},
+			"info": {
+				"spellchecking_complete": { "fr":"Vérification orthographique terminée.", "en":"Spellchecking complete." }
+			},
+			"warning": {
+				"please_enter_spintax_paragraph": { "fr":"Veuillez saisir un paragraphe au format Spintax.", "en":"Please enter a Spintax paragraph." },
+				"please_enter_only_one_paragraph": { "fr":"Veuillez ne pas saisir plus d'un paragraphe.", "en":"Please enter only one paragraph." },
+				"sentences_number": { "fr":"Les phrases n°", "en":"Sentences n°" },
+				"sentence_number": { "fr":"La phrase n°", "en":"Sentence n°" },
+				"has_reached_limit_of": { "fr":"a atteint la limite de", "en":"has reached the limit of" },
+				"have_reached_limit_of": { "fr":"ont atteint la limite de", "en":"have reached the limit of" },
+				"variations": { "fr":"variations", "en":"variations" }
+			},
+			"error": {
+				"error_type_not_supported": { "fr":"Ce type d'erreur n'est pas pris en charge :", "en":"This error type is currently not supported:" }
+			}
+		}
+	},
+	
+	"GLOBAL": {
+		"paragraph_navigator": {
+			"paragraph_number": { "fr":"Paragraphe n°", "en":"Paragraph n°" },
+			"goto_content": { "fr":"Aller au contenu", "en":"Go to content" },
+			"goto_info_message": { "fr":"Aller au message d'information", "en":"Go to info message" },
+			"article_stats": { "fr":"Statistiques de l'article", "en":"Article stats" },
+			"info_messages": { "fr":"Messages d'information", "en":"Info messages" },
+			"no_paragraph_to_display": { "fr":"Aucun paragraphe à afficher.", "en":"No paragraph to display" },
+			"open_all_info_messages": { "fr":"Ouvrir tous les messages d'information", "en":"Open all info messages" },
+			"close_all_info_messages": { "fr":"Fermer tous les messages d'information", "en":"Close all info messages" },
+			"all_info_messages_opened": { "fr":"Tous les messages d'information ont été ouverts.", "en":"All info messages have been opened." },
+			"all_info_messages_closed": { "fr":"Tous les messages d'information ont été fermés.", "en":"All info messages have been closed." }
+		},
+		"missing_parameter": { "fr":"Paramètre manquant", "en":"Missing parameter" },
+		"server_error": { "fr":"Erreur serveur !", "en":"Server error!" },
+		"show_help": { "fr":"Afficher l'aide", "en":"Show help" },
+		"hide_help": { "fr":"Masquer l'aide", "en":"Hide help" },
+		"processing": { "fr":"Traitement en cours", "en":"Processing" }
+	}
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Upload File</title>
+
+
+ <style>
+ 
+@font-face {
+	font-family: Roboto-Regular;
+	src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+	font-family: Roboto-Bold;
+	src: url('../fonts/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+	font-family: Roboto-BoldItalic;
+	src: url('../fonts/Roboto/Roboto-BoldItalic.ttf');
+}
+
+@font-face {
+	font-family: Roboto-Italic;
+	src: url('../fonts/Roboto/Roboto-Italic.ttf');
+}
+
+@font-face {
+	font-family: Roboto-Light;
+	src: url('../fonts/Roboto/Roboto-Light.ttf');
+}
+body {font-family: 'Roboto', sans-serif;}
+
+
+input[ type="submit"],input[ type="file"],select {-moz-appearance:none!important; -webkit-appearance:none!important;}
+
+#spintype {   width: 50%; position:relative; border: 2px solid #ce4844; color: #ce4844;  padding: 10px 15px;  margin:5px 0; font-size:20px;
+    font-weight: 400; font-family: 'Roboto', sans-serif; border-radius: 5px; -webkit-border-radius:5px; background:url("../images/aroow-shipe.png") no-repeat 97% center; text-align-last: center; text-align: center; -ms-text-align-last: center;-moz-text-align-last: center; text-align-last: center;}
+
+#spinLimitBox {   color: #ce4844; font-size:20px; font-weight:400; position: absolute;  top: 150px; width:15%; right: 78px;}
+#spinLimitBox input[ type="text"]{color: #ce4844;  border: 2px solid #ce4844; border-radius:5px; padding: 8px 5px;  margin: 10px; font-size: 20px;
+ font-weight: 400; width:20%; text-align:center;  -webkit-border-radius:5px;}
+
+input[ type="submit"]{ cursor:pointer;  width: 50%; border:none; border: 2px solid #5cb85c; color: #5cb85c; padding: 8px 15px; background:none;  font-size: 20px; font-weight: 400; margin:5px 0; font-family: 'Roboto', sans-serif; border-radius: 5px; -webkit-border-radius:5px;}
+
+.fileUpload { position: relative; overflow: hidden; margin:5px 0;  width: 50%; border: 2px solid #5cb85c; cursor:pointer; padding: 8px 15px;
+	text-align:center;	box-sizing:border-box; font-size:20px; font-weight: 400; color: #5cb85c; border-radius: 5px; -webkit-border-radius:5px;}
+
+.fileUpload input.upload { margin: 0; padding: 0;  font-size: 20px; cursor: pointer;  opacity: 0; filter: alpha(opacity=0); width:100%; position:absolute;right:0; }
+
+
+
+ </style>   
+    
+    
+    
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+		
+		<script type="text/javascript">
+			$(function(){
+				$('#file').change(function(e){
+				  var fileName = $('input[type=file]').val();
+				  $("#filepath").val(fileName);
+				});
+				
+				$("#spintype").change(function(e){ 
+					var spinType = parseInt($("#spintype").val());
+					
+					if(spinType == 2 || spinType == 3) {
+						$("#spinLimitBox").show();
+					}
+					else {
+						$("#spinLimitBox").hide();
+					}
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<center>
+			<div style="margin-top: 100px;">
+			<form action="upload_file.php" method="post"
+				enctype="multipart/form-data">
+				<!--<label for="file">Input File:</label>-->
+				<input type="hidden" id="filepath" name="filepath"/>
+			<!--<input type="file" name="file" id="file"><br>-->
+               <div  class="fileUpload btn btn-primary">
+    <span>Upload</span>
+    <input type="file"  name="file" id="file" class="upload" />
+</div>
+ 
+
+				<select name="spintype" id="spintype">
+					<option  value="1">Full Spin</option>
+					<option class="it" value="2">Single File With File Limit</option>
+					<option class="it" value="3">Multiple Files of Specified Limit</option>
+				</select>
+				<span id="spinLimitBox" style="display:none;"> Limit (in MB):<input type="text" name="spinLimit" size="5" value="1"/></span>
+				<br/>
+               
+				<input type="submit" name="submit" value="Generate Output File">
+			</form>
+			</div>
+		</center>
+	</body>
+</html>

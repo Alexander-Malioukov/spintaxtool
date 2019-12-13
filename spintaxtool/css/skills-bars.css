@@ -1,0 +1,47 @@
+
+skills {
+	display: none;
+}
+
+skills progress {
+    height: 1.5em;
+    width: 100%;
+    border: 1px #eaeaea solid;
+    background-color: #fff;
+}
+
+skills progress::-webkit-progress-bar {
+    background-color: #fff;
+}
+
+skills progress+span {
+    top: -1.5em;
+    left: 2%;
+    position: relative;
+    float: left;
+    font-size: .9em;
+    font-weight: normal;
+    font-family: 'Courier New';
+    color: #313131;
+}
+
+/** Bars colors **/
+
+skills progress::-webkit-progress-value {
+    background-color: #329ad1;
+}
+skills progress::-moz-progress-bar {
+    background-color: #329ad1;
+}
+
+skills progress.bad-score {	color: #ce4844; } /* for IE */
+skills progress.bad-score::-webkit-progress-value { background-color: #ce4844; }
+skills progress.bad-score::-moz-progress-bar { background-color: #ce4844; }
+
+skills progress.average-score {	color: #ffbf00; } /* for IE */
+skills progress.average-score::-webkit-progress-value { background-color: #ffbf00; }
+skills progress.average-score::-moz-progress-bar { background-color: #ffbf00; }
+
+skills progress.good-score {	color: #5cb85c; } /* for IE */
+skills progress.good-score::-webkit-progress-value { background-color: #5cb85c; }
+skills progress.good-score::-moz-progress-bar { background-color: #5cb85c; }

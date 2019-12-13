@@ -1,0 +1,63 @@
+#paragraph-navigator {
+	position: fixed;
+	top: 130px;
+	left: -300px;
+}
+
+#paragraph-navigator .main-zone {
+	float: left;
+	width: 250px;
+	background: #eaeaea;
+	border-top: 1px #ccc solid;
+	border-right: 1px #ccc solid;
+	border-bottom: 1px #ccc solid;
+}
+
+#paragraph-navigator .main-zone .container {
+	padding: 10px 10px;
+	color: #777;
+}
+
+#paragraph-navigator .main-zone .container[class~=header] {
+    padding-bottom: 9px;
+	border-bottom: 1px solid #ccc;
+}
+
+#paragraph-navigator .main-zone .container[class~=footer] {
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px dashed #ccc;
+}
+
+/*#paragraph-navigator .main-zone .container:LAST-CHILD {
+	padding-bottom: 10px;
+}*/
+
+#paragraph-navigator .main-zone .container a {
+	/*display: block;*/
+	padding: 5px;
+	background: #eaeaea;
+	color: #777;
+}
+#paragraph-navigator .main-zone .container a:HOVER {
+	background: #ffeb46;
+}
+
+#paragraph-navigator .thumbnail {
+	border-collapse: collapse;
+	margin-left: 250px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #777;
+	background: #eaeaea;
+	border-top: 1px #ccc solid;
+	border-right: 1px #ccc solid;
+	border-bottom: 1px #ccc solid;
+	border-radius: 0 8px 8px 0;
+}
+#paragraph-navigator .thumbnail:HOVER {
+	background: #ffeb46;
+	cursor: pointer;
+}
