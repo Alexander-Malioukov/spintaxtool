@@ -1,4 +1,5 @@
 .idea/
-download/*.zip
+download/*
 uploads/processing/*.txt
 uploads/tmp/*.txt
+*-test.php

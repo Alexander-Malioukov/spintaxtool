@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 /**
  * Simple PHP upload class
  *
@@ -109,7 +110,7 @@ class Upload {
 		if ($root) {
 			$this->root = $root;
 		} else {
-			$this->root = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR;
+			$this->root = APP_BASE_PATH.DIRECTORY_SEPARATOR; //$_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR;
 		}
 		// set & create destination path
 		if (!$this->set_destination($destination)) {

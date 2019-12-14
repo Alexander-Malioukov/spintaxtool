@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 //date_default_timezone_set('Asia/Ho_Chi_Minh');
 set_time_limit(0);
 class CSAGPROCESS {
@@ -48,13 +49,13 @@ class CSAGPROCESS {
             $_SERVER['DOCUMENT_ROOT'] = __DIR__;
         }
         if (!isset($_SERVER['HTTP_HOST']) || empty($_SERVER['HTTP_HOST']) ) {
-            $_SERVER['HTTP_HOST'] = 'phpstack-116171-897520.cloudwaysapps.com'; //'phpstack-116171-897520.cloudwaysapps.com';
+            $_SERVER['HTTP_HOST'] = 'content-spinning.pro'; //'phpstack-116171-897520.cloudwaysapps.com';
         }
         $this->path = array(
-            'processing' => $_SERVER['DOCUMENT_ROOT'] . '/uploads/processing/',
-            'download' => "http://". $_SERVER['HTTP_HOST'] . "/spintaxtool/download/",
-            'upload' => $_SERVER['DOCUMENT_ROOT'] . '/uploads/tmp/',
-            'download_path' => $_SERVER['DOCUMENT_ROOT'] . '/download/'
+            'processing' => APP_BASE_PATH.'/uploads/processing/', //$_SERVER['DOCUMENT_ROOT'] . '/uploads/processing/',
+            'download' => APP_BASE_URL.'/download/', //"http://". $_SERVER['HTTP_HOST'] . "/spintaxtool/download/",
+            'upload' => APP_BASE_PATH.'/uploads/tmp/', //$_SERVER['DOCUMENT_ROOT'] . '/uploads/tmp/',
+            'download_path' => APP_BASE_PATH.'/download/' //$_SERVER['DOCUMENT_ROOT'] . '/download/'
         );
     }
     
