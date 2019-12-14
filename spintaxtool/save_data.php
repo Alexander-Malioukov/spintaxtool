@@ -1,5 +1,6 @@
 <?php
-$filePath  =  $_SERVER['DOCUMENT_ROOT'].'/spintaxtool/uploads/processing/';
+require_once 'config.php';
+$filePath  =  APP_BASE_PATH.'/uploads/processing/'; //$_SERVER['DOCUMENT_ROOT'].'/spintaxtool/uploads/processing/';
 include('contents_class.php');
 $lib	=	new contentsClass;
 if(!is_dir($filePath))

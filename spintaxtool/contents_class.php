@@ -1,5 +1,6 @@
 <?php
- class contentsClass {
+require_once 'config.php';
+class contentsClass {
     
     public function countElements($article)
     {
@@ -46,7 +47,7 @@
     }
     
     public function convert_content( $data, $folder ) {
-        $fileUploadPath   =   $_SERVER['DOCUMENT_ROOT'].'spintaxtool/uploads/processing/' . $folder;
+        $fileUploadPath   =   APP_BASE_PATH.'/uploads/processing/' . $folder;
         if( !is_dir($fileUploadPath) ) return false;
 
         $output = $data;
@@ -63,11 +64,11 @@
             $html .= '<div class="wrap">';
             $html .= '<div class="text">'.$mess.'</div>';
             $html .= '<div class="buttons">';
-                $html .= '<a class="cancel" href="/spintaxtool/generatespin.php">back to home</a>';
+                $html .= '<a class="cancel" href="'.APP_BASE_URL.'/generatespin.php">back to home</a>';
                 if( $link ):
                     $html .= '<a class="download" href="'.$link.'">download</a>';
                 else:
-                    $html .= '<a class="download" href="/spintaxtool/generatespin.php">cancel</a>';
+                    $html .= '<a class="download" href="'.APP_BASE_URL.'/generatespin.php">cancel</a>';
                 endif;
                 $html .= '</div>';
             $html .= '</div>';

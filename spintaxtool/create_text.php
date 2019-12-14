@@ -1,4 +1,5 @@
 ﻿<?php
+require_once 'config.php';
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 if( ! isset( $_POST ) || empty( $_POST ) || ! isset( $_POST['pr_swap_from'] ) ) {
     echo 'Hi Bro !!!'; exit();
@@ -10,7 +11,7 @@ $obj	=	new contentsClass;
 //die('<div align="center">kjfdhgkjfdhgkjh</br><a id="add_paragraph" class="button button-blue" href="#">Download Now</a></div>');
 @$language = ($_COOKIE['languagename']);
 
-if($_SERVER['HTTP_HOST'] == 'localhost')
+/*if($_SERVER['HTTP_HOST'] == 'localhost')
 {
     $fileUploadPath   =   $_SERVER['DOCUMENT_ROOT'].'/spintxt/uploads/tmp/';
     $zipFileLocation   = "http://".$_SERVER['HTTP_HOST']."/spintxt/download/".date('Y-m-d');
@@ -19,7 +20,11 @@ else
 {
 	$fileUploadPath   =   $_SERVER['DOCUMENT_ROOT'].'/spintaxtool/uploads/tmp/';
 	$zipFileLocation   = "http://".$_SERVER['HTTP_HOST']."/spintaxtool/download/".date('Y-m-d');
-}
+}*/
+
+$fileUploadPath = APP_BASE_PATH.'/uploads/tmp/';
+$zipFileLocation = APP_BASE_URL."/download/".date('Y-m-d');
+
 $folder = $_POST['folder'];
 unset( $_POST['folder'] );
 
@@ -318,6 +323,51 @@ for($j=0; $j <= $no_article; $j++){
 			  $textData = implode("",$new_textData);
 			  }
 		 $k= $j+1;
+		 /* START - filtering text before writing to file */
+		 //file_put_contents($filePath.'/tirage'.$k.'-source.txt',$textData);
+		 $textData = str_replace(' '.PHP_EOL, PHP_EOL, $textData);
+		 $textData = preg_replace('/\<p\>\s+/m', '<p>', $textData);
+		 $textData = preg_replace('/\s+<\/p>/m', '</p>', $textData);
+		 $textData = preg_replace('/<\/p> +/m', '</p>', $textData);
+		 $textData = preg_replace('/ +/m', ' ', $textData);
+		 $textData = str_replace('</p><p>', '</p>'.PHP_EOL.PHP_EOL.'<p>', $textData);
+		 $textData = str_replace('</h1> '.PHP_EOL.'<p>', '</h1>'.PHP_EOL.PHP_EOL.'<p>', $textData);
+		 $textData = str_replace("\r\n", '[BREAK]', $textData);
+		 $textData = str_replace("\r", '[BREAK]', $textData);
+		 $textData = str_replace("\n", '[BREAK]', $textData);
+		 $textData = str_replace('[BREAK]', PHP_EOL, $textData);
+		 $textData = explode(PHP_EOL.PHP_EOL, $textData);
+		 $textData_arr = array();
+		 foreach($textData as $tD) { echo '<textarea>'.$tD.'</textarea>';
+			$tD = preg_replace('/\>\s+\</m', '>[BREAK]<', $tD);
+			if(strpos($tD, '[BREAK]') > -1) {
+				$tD = explode('[BREAK]', $tD);
+				$textData_arr = array_merge($textData_arr, $tD);
+			} else
+				array_push($textData_arr, $tD);
+		 }
+		 $textData = $textData_arr;
+		 if(!function_exists('ensure_html_tag_closure')) {
+			function ensure_html_tag_closure($html_chunk) {
+				preg_match('/\<[a-z]+\>/', $html_chunk, $start_tag); //echo '<code>START:<pre>'.print_r($start_tag, true).'</pre></code>';
+				if(!empty($start_tag)
+				&& isset($start_tag[0])
+				&& !empty($start_tag[0])) {
+					$end_tag_should_be = str_replace('<', '</', $start_tag[0]);
+					preg_match('/'.str_replace('/', '\/', $end_tag_should_be).'\s*$/m', $html_chunk, $end_tag); //echo '<code>END:<pre>'.print_r($end_tag, true).'</pre></code>';
+					if(empty($end_tag)
+					|| !isset($end_tag[0])
+					|| empty($end_tag[0])) {
+						$html_chunk .= $end_tag_should_be;
+					}
+				}
+				return $html_chunk;
+			}
+		 }
+		 $textData = array_map('trim', $textData); echo '<hr /><textarea>'.print_r($textData, true).'</textarea>';
+		 $textData = array_map('ensure_html_tag_closure', $textData);
+		 $textData = implode(PHP_EOL.PHP_EOL, $textData);
+		 /* END - filtering text before writing to file */
 		 file_put_contents($filePath.'/tirage'.$k.'.txt',$textData);
 		 $totalCreatedFiles++;
 		 if($totalCreatedFiles>$no_article-1)

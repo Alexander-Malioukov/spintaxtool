@@ -1,7 +1,8 @@
 <?php
+require_once 'config.php';
 //date_default_timezone_set('Asia/Ho_Chi_Minh');
 function mone_remove_old_data() {
-    $rdir = $_SERVER['DOCUMENT_ROOT'].'/spintaxtool/download/';
+    $rdir = APP_BASE_PATH.'/download/'; //$_SERVER['DOCUMENT_ROOT'].'/spintaxtool/download/';
     //var_dump($rdir); exit();
     foreach (scandir($rdir) as $folder) {
         if ($folder != '.' && $folder != '..') { 
