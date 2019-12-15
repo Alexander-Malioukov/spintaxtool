@@ -2244,6 +2244,7 @@ alert(i);
 	
 
 	this.analyzeArticle = function() {
+		debugger;
 
 		var $paragraphContent,
 

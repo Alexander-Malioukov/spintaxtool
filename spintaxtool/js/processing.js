@@ -53,8 +53,10 @@
     
     DYANCORE.saveData = function() {
         $('body').on('click','.save-art', function() {
+
             //$('.loading-block').addClass('open');
             $("form#db-form").submit(function(e) {
+                debugger;
 			     e.preventDefault();
 				 $('.loading-block').addClass('open');
 				 var $this = $(this);
@@ -66,6 +68,7 @@
 						dataType: "html",
 						data: $this.serializeArray(),
 					   success: function(html) {
+					       debugger;
 						   $('body').append(html);
 					   }
 					 });

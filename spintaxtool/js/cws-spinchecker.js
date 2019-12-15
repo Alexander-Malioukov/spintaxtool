@@ -806,6 +806,10 @@ function Spinchecker() {
 							'</select>' +
 
 							'<select name="cnt_par[' + noParagraph + '][permutation_pos]" id="permutation-pos-'+ noParagraph + '" class="mini para_rand_val" onChange="change_para_swap_box('+noParagraph+')">'+
+								'<option value="META_TITLE">' + MySpeech.get("form.select.meta_title") + '</option>'+
+								'<option value="META_DESCRIPTION">' + MySpeech.get("form.select.meta_description") + '</option>'+
+								'<option value="H1_TITLE">' + MySpeech.get("form.select.h1_title") + '</option>'+
+								'<option value="OTHER_TITLE">' + MySpeech.get("form.select.other_title") + '</option>'+
 								'<option value="NORMAL_PARAGRAPH">' + MySpeech.get("form.select.normal_paragraph") + '</option>'+
 								'<option value="INTRO_PARAGRAPHP">' + MySpeech.get("form.select.introduction_paragraph") + '</option>'+
 								'<option value="CONCLUSION_PARAGRAPH">' + MySpeech.get("form.select.conclusion_paragraph") + '</option>'+
@@ -1474,11 +1478,12 @@ function Spinchecker() {
 
 	 */
 	 
-	 function getReadbleContent(){
-		   $("#db-form").removeAttr("onsubmit");
-		  $("#db-form").submit();
-		  return false;
-		 }
+	function getReadbleContent(){
+		debugger;
+	   	$("#db-form").removeAttr("onsubmit");
+		$("#db-form").submit();
+		return false;
+	}
 
 
 	/**
@@ -2128,6 +2133,7 @@ function Spinchecker() {
 	
 
 	this.analyzeArticle = function() {
+		debugger;
         $('.loading-block').addClass('open');
 		var $paragraphContent,
 
