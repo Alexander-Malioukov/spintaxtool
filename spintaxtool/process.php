@@ -299,11 +299,11 @@ class CSAGPROCESS {
             					   $articleElementArr  =  preg_replace('/[H[1-6]](.*?)[H[1-6]]/',"[H1]$1[H1]", $articleElementArr);						
             					} else { 
                 					$articleElementArr = preg_replace('/<h1>(.*?)<\/h1>/',"<h2>$1</h2>", $articleElementArr);
-                					$articleElementArr = preg_replace('/[H1](.*?)[H1]/',"[H2]$1[H2]", $articleElementArr); 
+                					$articleElementArr = preg_replace('/\[\H\1\](.*?)\[\H\1\]/',"[H2]$1[H2]", $articleElementArr); 
             					}
             				} elseif( ( $title_tag_with == 'Y' ) && ( !empty( $introElement ) ) ) {
         						$articleElementArr = preg_replace('/<h1>(.*?)<\/h1>/',"<h2>$1</h2>", $articleElementArr);
-        						$articleElementArr = preg_replace('/[H1](.*?)[H1]/',"[H2]$1[H2]", $articleElementArr);
+        						$articleElementArr = preg_replace('/\[\H\1\](.*?)\[\H\1\]/',"[H2]$1[H2]", $articleElementArr);
             				}
                             switch( $permutation_mode ) {					
             					case 'ALL_NOT_PERMUTABLE':
@@ -335,7 +335,7 @@ class CSAGPROCESS {
                 @$textData = $introElement;		 
                 $textData .= $returnBodyElement;
                 $conclusionElement  = preg_replace('/<h1>(.*?)<\/h1>/',"<h2>$1</h2>", $elementSting);
-                $conclusionElement  = preg_replace('/[H1](.*?)[H1]/',"[H2]$1[H2]", $elementSting);
+                $conclusionElement  = preg_replace('/\[\H\1\](.*?)\[\H\1\]/',"[H2]$1[H2]", $elementSting);
                 $textData          .= $conclusionElement;
                 if( $add_p_tag == "Y" ) {
                     $splited_file_data = preg_split("#\n#Uis",$textData);
